@@ -50,6 +50,7 @@ public class GesturesUtils {
         final var end = getElementCenter(target);
 
         log.info("Drag Drop...");
+
         printPoint("Start", start);
         printPoint("End", end);
 
