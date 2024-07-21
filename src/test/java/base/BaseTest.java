@@ -1,6 +1,7 @@
 package base;
 
 import io.appium.java_client.AppiumDriver;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.mobile.testing.framework.deviceconfig.DeviceType;
 import org.testng.annotations.AfterMethod;
@@ -11,13 +12,10 @@ import utils.AppiumDriverEx;
 
 @Log4j2
 public class BaseTest {
+    @Getter
     private static AppiumDriver driver;
 
     public BaseTest() {
-    }
-
-    public AppiumDriver getDriver() {
-        return driver;
     }
 
     @BeforeMethod(alwaysRun = true)
