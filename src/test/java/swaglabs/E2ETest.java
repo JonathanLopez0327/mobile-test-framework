@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 public class E2ETest extends BaseTest {
 
-    private LoginPage loginPage;
     private HomePage homePage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
@@ -18,7 +17,7 @@ public class E2ETest extends BaseTest {
 
     @BeforeMethod()
     public void login_test() {
-        loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         cartPage = new CartPage(getDriver());
         checkoutPage = new CheckoutPage(getDriver());

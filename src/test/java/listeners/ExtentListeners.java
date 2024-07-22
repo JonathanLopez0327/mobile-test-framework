@@ -29,22 +29,71 @@ public class ExtentListeners implements ITestListener {
         extentTest.set(test);
     }
 
-    public void onTestSuccess(ITestResult result) {
-        String methodName = result.getMethod().getMethodName();
-        String logText = "<b>" + "TEST CASE:- " + methodName.toUpperCase() + " - PASSED" + "</b>";
-        Markup markup = MarkupHelper.createLabel(logText, ExtentColor.GREEN);
+//    public void onTestSuccess(ITestResult result) {
+//        try {
+//            String base64Screenshot = ExtentManager.captureScreenshot();
+//            extentTest.get().pass("<b><font color=\"green\">Screenshot of success</font></b>",
+//                    MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+//        } catch (Exception e) {
+//            log.error("Error while capturing screenshot on test success", e);
+//        }
+//    }
+//
+//    public void onTestFailure(ITestResult result) {
+//        try {
+//            String base64Screenshot = ExtentManager.captureScreenshot();
+//            extentTest.get().fail("<b><font color=\"red\">Screenshot of failure</font></b>",
+//                    MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+//        } catch (Exception e) {
+//            log.error("Error ", e);
+//        }
+//    }
 
-        extentTest.get().pass("<b>" + "<font color=" + "green>" + "Screenshot of success" + "</font>" + "</b>",
-                MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.getScreenshotName())
-                        .build());
+//    public void onTestSuccess(ITestResult result) {
+//        try {
+//            String base64Screenshot = ExtentManager.captureScreenshot();
+//            String imgTag = "<img src=\"data:image/png;base64, " + base64Screenshot + "\" height=\"200\" width=\"300\" />";
+//            extentTest.get().pass("<b><font color=\"green\">Screenshot of success</font></b><br>" + imgTag);
+//        } catch (Exception e) {
+//            log.error("Error while capturing screenshot on test success", e);
+//        }
+//    }
+//
+//    public void onTestFailure(ITestResult result) {
+//        try {
+//            String base64Screenshot = ExtentManager.captureScreenshot();
+//            String imgTag = "<img src=\"data:image/png;base64, " + base64Screenshot + "\" height=\"200\" width=\"300\" />";
+//            extentTest.get().fail("<b><font color=\"red\">Screenshot of failure</font></b><br>" + imgTag);
+//        } catch (Exception e) {
+//            log.error("Error ", e);
+//        }
+//    }
+
+//    public void onTestSuccess(ITestResult result) {
+//        try {
+//            String base64Screenshot = ExtentManager.captureScreenshot();
+//            String imgTag = "<img src=\"data:image/png;base64, " + base64Screenshot + "\" style=\"max-width:25%; height:auto;\" />";
+//            extentTest.get().pass("<b><font color=\"green\">Screenshot of success</font></b><br>" + imgTag);
+//        } catch (Exception e) {
+//            log.error("Error while capturing screenshot on test success", e);
+//        }
+//    }
+
+    public void onTestSuccess(ITestResult result) {
+        try {
+            String base64Screenshot = ExtentManager.captureScreenshot();
+            String imgTag = "<img src=\"data:image/png;base64, " + base64Screenshot + "\" style=\"max-width:25%; height:auto;\" onclick=\"this.style.maxWidth='100%'; this.style.height='auto';\" />";
+            extentTest.get().pass("<b><font color=\"green\">Screenshot of success</font></b><br>" + imgTag);
+        } catch (Exception e) {
+            log.error("Error while capturing screenshot on test success", e);
+        }
     }
 
     public void onTestFailure(ITestResult result) {
         try {
-            ExtentManager.captureScreenshot();
-            extentTest.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
-                    MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.getScreenshotName())
-                            .build());
+            String base64Screenshot = ExtentManager.captureScreenshot();
+            String imgTag = "<img src=\"data:image/png;base64, " + base64Screenshot + "\" style=\"max-width:25%; height:auto;\" />";
+            extentTest.get().fail("<b><font color=\"red\">Screenshot of failure</font></b><br>" + imgTag);
         } catch (Exception e) {
             log.error("Error ", e);
         }

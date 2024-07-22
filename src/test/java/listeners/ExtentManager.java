@@ -20,8 +20,10 @@ import java.time.format.DateTimeFormatter;
 
 @Log4j2
 public class ExtentManager extends BaseTest {
+
     @Getter
     private static ExtentReports extentReports;
+
     @Getter
     private static String screenshotName;
 
@@ -43,22 +45,28 @@ public class ExtentManager extends BaseTest {
         return extentReports;
     }
 
-    public static void captureScreenshot() {
+
+    public static String captureScreenshot() {
         TakesScreenshot screenshot = getDriver();
-        File src = screenshot.getScreenshotAs(OutputType.FILE);
-
-        String timestamp = getReportNameWithTimeStamp();
-        screenshotName = "screenshot_" + timestamp + ".jpg";
-        File dest = new File(System.getProperty("user.dir") + "/reports/" + screenshotName);
-
-        try (FileChannel sourceChannel = new FileInputStream(src).getChannel();
-             FileChannel destChannel = new FileOutputStream(dest).getChannel()) {
-            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-            log.info("Successfully captured a screenshot: {}", dest.getAbsolutePath());
-        } catch (IOException e) {
-            log.error("Error while taking screenshot: {}", e.getMessage());
-        }
+        return screenshot.getScreenshotAs(OutputType.BASE64);
     }
+
+//    public static void captureScreenshot() {
+//        TakesScreenshot screenshot = getDriver();
+//        File src = screenshot.getScreenshotAs(OutputType.FILE);
+//
+//        String timestamp = getReportNameWithTimeStamp();
+//        screenshotName = "screenshot_" + timestamp + ".jpg";
+//        File dest = new File(System.getProperty("user.dir") + "/reports/" + screenshotName);
+//
+//        try (FileChannel sourceChannel = new FileInputStream(src).getChannel();
+//             FileChannel destChannel = new FileOutputStream(dest).getChannel()) {
+//            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+//            log.info("Successfully captured a screenshot: {}", dest.getAbsolutePath());
+//        } catch (IOException e) {
+//            log.error("Error while taking screenshot: {}", e.getMessage());
+//        }
+//    }
 
     public static String getReportNameWithTimeStamp() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");

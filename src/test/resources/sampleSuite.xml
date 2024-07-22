@@ -10,7 +10,6 @@
         <classes>
             <class name="swaglabs.E2ETest">
             </class>
-
         </classes>
     </test>
 </suite>
