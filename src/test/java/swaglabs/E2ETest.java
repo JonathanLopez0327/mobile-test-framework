@@ -1,11 +1,12 @@
 package swaglabs;
 
-import base.BaseTest;
-import org.mobile.testing.framework.gestures.GesturesUtils;
-import org.mobile.testing.framework.pages.swanglabs.*;
+import basetest.BaseTest;
+import gestures.GesturesUtils;
+import io.appium.java_client.AppiumDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.swaglabs.*;
 
 public class E2ETest extends BaseTest {
 
@@ -17,7 +18,7 @@ public class E2ETest extends BaseTest {
 
     @BeforeMethod()
     public void login_test() {
-        LoginPage loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage((AppiumDriver) getDriver());
         homePage = new HomePage(getDriver());
         cartPage = new CartPage(getDriver());
         checkoutPage = new CheckoutPage(getDriver());

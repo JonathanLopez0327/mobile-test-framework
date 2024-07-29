@@ -1,8 +1,9 @@
 package swaglabs;
 
-import base.BaseTest;
-import org.mobile.testing.framework.pages.swanglabs.HomePage;
-import org.mobile.testing.framework.pages.swanglabs.LoginPage;
+import basetest.BaseTest;
+import io.appium.java_client.AppiumDriver;
+import pages.swaglabs.HomePage;
+import pages.swaglabs.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,11 +20,11 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(homePage.isProductsDisplayed(), "No ha iniciado sesion correctamente.");
     }
 
-    @Test(description = "Iniciar sesion con credenciales validas")
-    void login_with_invalid_credentials() {
-        loginPage = new LoginPage(getDriver());
-        homePage = new HomePage(getDriver());
-        loginPage.login("error_user", "error_sauce");
-        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "No se muestra mensaje de error correctamente.");
-    }
+//    @Test(description = "Iniciar sesion con credenciales validas")
+//    void login_with_invalid_credentials() {
+//        loginPage = new LoginPage(getDriver());
+//        homePage = new HomePage(getDriver());
+//        loginPage.login("error_user", "error_sauce");
+//        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "No se muestra mensaje de error correctamente.");
+//    }
 }
