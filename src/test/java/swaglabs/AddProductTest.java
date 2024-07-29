@@ -1,10 +1,11 @@
 package swaglabs;
 
-import base.BaseTest;
-import org.mobile.testing.framework.gestures.GesturesUtils;
-import org.mobile.testing.framework.pages.swanglabs.HomePage;
-import org.mobile.testing.framework.pages.swanglabs.LoginPage;
-import org.mobile.testing.framework.pages.swanglabs.ProductItem;
+import basetest.BaseTest;
+import gestures.GesturesUtils;
+import io.appium.java_client.AppiumDriver;
+import pages.swaglabs.HomePage;
+import pages.swaglabs.LoginPage;
+import pages.swaglabs.ProductItem;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

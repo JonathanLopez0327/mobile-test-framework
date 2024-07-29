@@ -1,11 +1,12 @@
 package swaglabs;
 
-import base.BaseTest;
-import org.mobile.testing.framework.gestures.GesturesUtils;
-import org.mobile.testing.framework.pages.swanglabs.*;
+import basetest.BaseTest;
+import gestures.GesturesUtils;
+import io.appium.java_client.AppiumDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.swaglabs.*;
 
 public class DeleteProductTest extends BaseTest {
 
@@ -31,7 +32,7 @@ public class DeleteProductTest extends BaseTest {
         gesturesUtils.dragTo(productItem.dragHandle(), homePage.dropZone());
         homePage.clickCartButton();
         CartItem cartItem = cartPage.cartItem(PRODUCT_NAME);
-        gesturesUtils.swipe(GesturesUtils.Direction.LEFT, cartItem.element(), 25);
+        gesturesUtils.swipe(GesturesUtils.Direction.LEFT, cartItem.getElement(), 25);
         cartPage.removeItem();
         Assert.assertEquals(homePage.isCartCountEqualsToZero(), true, "No se ha removido con exito el producto.");
     }
