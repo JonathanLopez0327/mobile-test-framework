@@ -7,6 +7,7 @@ import extentreport.ExtentManager;
 import extentreport.ExtentReport;
 import extentreport.SuiteListener;
 import io.appium.java_client.AppiumDriver;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import deviceconfig.DeviceType;
 import org.testng.ITestContext;
@@ -21,10 +22,15 @@ import java.lang.reflect.Method;
 public class BaseTest {
 
     private static ThreadLocal<AppiumDriver> driver;
+
+    @Getter
     private static ExtentReports extentReports = ExtentManager.getInstance();
+
     private static ExtentTest scenario;
 
+
     public BaseTest() {
+        // comment
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -35,17 +41,16 @@ public class BaseTest {
         scenario = extentReports.createTest(scenarioName + " - " + testMethod.getAnnotation(Test.class).description());
 
         ExtentReport.setExtentTest(scenario);
-        scenario.assignCategory(scenarioName);
+        scenario.assignCategory(new String[]{scenarioName});
         scenario.assignCategory("<b>TOTALS</b>");
-
-
+        
 
         if (deviceType == null || deviceType.isEmpty()) {
             deviceType = DeviceType.NONE.name();
         }
 
         driver = AppiumDriverEx.getAppiumDriver(context);
-        scenario.assignDevice(deviceType);
+        scenario.assignDevice(new String[]{deviceType});
         log.info("Device name: {}", deviceType);
     }
 
@@ -71,10 +76,6 @@ public class BaseTest {
         } catch (Exception e) {
             log.error("Error creating step", e);
         }
-    }
-
-    public static ExtentReports getExtentReports() {
-        return extentReports;
     }
 
     @AfterMethod()
