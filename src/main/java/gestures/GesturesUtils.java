@@ -11,9 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-
 import java.util.Arrays;
-
 import static java.text.MessageFormat.format;
 import static java.time.Duration.ZERO;
 import static java.time.Duration.ofMillis;

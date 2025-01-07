@@ -16,10 +16,11 @@ import org.testng.annotations.Listeners;
 @Listeners(SuiteListener.class)
 public class SuiteListener extends BaseTest implements ITestListener, IExecutionListener {
 
-    private static ExtentReports extentReports;
+    private ExtentReports extentReports;
 
 
     public SuiteListener() {
+        // comment
     }
 
     @Override
@@ -53,7 +54,7 @@ public class SuiteListener extends BaseTest implements ITestListener, IExecution
     }
 
     @Override
-    public void onFinish(ITestContext context) {
+    public void onExecutionFinish() {
         extentReports.flush();
     }
 }
